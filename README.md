@@ -1,6 +1,6 @@
 # Hangman-Game-Web
-Hangman game in web.
+
 
 <div align="center">
-    <img src="descstyle.svg" width="400" height="400" alt="css-in-readme">
+    <h3 style="color: orange">Hangman Game in Web</h3>
 </div>
