@@ -1,0 +1,13 @@
+*{
+  font-family: monospace;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 252, 238);
+}
