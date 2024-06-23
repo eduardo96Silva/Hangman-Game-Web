@@ -1,0 +1,19 @@
+#section_footer {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #000;
+}
+#section_footer a{
+    text-decoration: none;
+    font-style: normal;
+    color: #fff;
+    transition: all 0.5s;
+}
+#section_footer a:hover{
+    transform: scale(1.1);
+    color: #16c9ff;
+}

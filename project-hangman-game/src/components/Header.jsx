@@ -1,52 +1,27 @@
-import styled from 'styled-components'
-import '../css/App.css'
+import style from '../css/Header.module.css'
 
-function Header(){
+import hangmanLogo from '/imgs/hangman-logo.png'
 
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+function Header() {
+    const location = useLocation();
 
-    const Header = styled.div`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-    `;
-
-    const Logo = styled.div`
-        margin-top: 30px;
-        margin-bottom: 10px;
-        font-size: 2.8em;
-        font-weight: 600;
-        color: blue;
-    `;
-
-    const Menu = styled.span`
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        margin-top: 10px;
-        margin-bottom: 30px;
-        width: 30%;
-        line-height: 50px;
-        font-size: 1.1em;
-        border: 1px solid #000;
-        font-weight: 600;
-        flex-wrap: wrap;
-    `;
-
-
-    return(
+    return (
         <>
-            <Header>
-                <Logo> Hangman Game </Logo>
-                <Menu>
-                    <span>Jogar</span>
-                    <span>Scoreboard</span>
-                    <span>Conta</span>
-                </Menu>
-            </Header>
+            <header id={style.header}>
+                <div id={style.logo}>
+                    <span>Hangman</span>
+                    <br />
+                    <span>Game <img src={hangmanLogo} alt="Hangman Logo" width={'50px'}/></span>
+                </div>
+                <div id={style.menu}>
+                    <Link to='/' className={location.pathname == '/' ? style.active : ''}>Jogar</Link>
+                    <Link to='/Scoreboard' className={location.pathname == '/Scoreboard' ? style.active : ''}>Scoreboard</Link>
+                    <Link to='/Conta' className={location.pathname == '/Conta' ? style.active : ''}>Conta</Link>
+                </div>
+            </header>
         </>
     )
 }
