@@ -11,7 +11,6 @@
 #lobby{
     width: 50%;
     height: 300px;
-    background-color: #fff;
     margin-top: 30px;
     margin-bottom: 30px;
     display: flex;
@@ -19,24 +18,9 @@
     align-items: center;
     box-shadow: rgb(67, 71, 85) 0px 0px 0.25em, rgba(0, 0, 0, 0.808) 0px 0.25em 1em;
     border-radius: 10px;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(221,221,221,1) 46%, rgb(187, 211, 245) 100%);
 }
-#lobby button {
-    font-family: "Patrick Hand SC", cursive;
-    font-size: 1.3em;
-    border: none;
-    color: #fff;
-    height: 40px;
-    border-radius: 8px;
-    background-color: rgb(84, 127, 182);
-}
-
-#lobby button:hover {
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: rgb(52, 81, 136);
-    box-shadow: rgba(32, 32, 32, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-}
-
 
 
 /* Area Game */
@@ -111,7 +95,7 @@
     display: flex;
 }
 
-#keyboard div span {
+#keyboard div button {
     width: 55px;
     height: 55px;
     margin-left: 5px;
@@ -127,12 +111,13 @@
     transition: all 0.3s;
 }
 
-#keyboard div span:hover {
+#keyboard div button:hover {
     transform: scale(1.1);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     background: rgb(255, 255, 255);
     cursor: pointer;
 }
+
 
 
 @keyframes anim {
