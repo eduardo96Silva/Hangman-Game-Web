@@ -1,0 +1,12 @@
+#card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgb(59, 59, 99);
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

@@ -12,12 +12,17 @@
     font-size: 3em;
     text-align: start;
     line-height: 40px;
+    transition: all 0.8s;
+}
+#logo:hover {
+    transform: scale(1.1);
+    cursor:default;
 }
 #logo span{
-    font-family: "Patrick Hand SC", cursive;
     font-weight: 400;
     font-style: normal;
 }
+
 
 #menu {
     display: flex;
@@ -35,8 +40,7 @@
     background-color: #fff;
     border-radius: 10px;
 }
-#menu a{
-    font-family: "Patrick Hand SC", cursive;
+#menu a{   
     color: #3b3b3b;
     cursor:none;
     font-style: normal;

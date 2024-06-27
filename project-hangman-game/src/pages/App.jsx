@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <div id='contentPage'>
+      <div id='allContentPage'>
         <Header/>
         <Outlet/>
         <Footer/>

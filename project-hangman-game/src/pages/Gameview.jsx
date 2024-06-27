@@ -1,4 +1,3 @@
-
 import style from '../css/GameView.module.css'
 import '../css/index.css'
 import stage1 from '/imgs/assets/stage-1.png'
@@ -12,6 +11,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import palavras from '../data/palavras'
 import { Alert } from '../components/SweetAlert'
+import Button from '@mui/material/Button'
 
 function Gameview() {
 
@@ -30,9 +30,8 @@ function Gameview() {
         const randomIndex = Math.floor(Math.random() * palavras.length); // Pegando uma palavra aleatoria da lista de palavras
         setPalavraSelecionada(palavras[randomIndex]); // guardando a palavra 
         setQtdLetras(palavras[randomIndex].palavra.length); // guardando a quantidade de letras que a palavra possui
-        setLetrasCorretas([]);
-        setVidasRestantes(6);
-        setStageAtual(0);
+
+        // Alterando estado de alguns elementos para hide e show
         setButtonRestart(false)
         document.querySelector('.area_palavra').style.display = 'flex';
         document.querySelector('.area_keyboard').style.display = 'flex'; 
@@ -40,12 +39,13 @@ function Gameview() {
 
     // Reiniciar o Jogo
     const restartGame = () => {
+        // Resetando o estado dos elementos para o original
         setStageAtual(0);
         setPalavraSelecionada(null);
         setQtdLetras(0);
         setLetrasCorretas([]);
         setVidasRestantes(6);
-        startGame()
+        startGame();
         document.querySelectorAll('.area_keyboard button').forEach(element => {
             element.disabled = false; // Mostrando novamente todas as letras do teclado
             element.classList.remove('buttonDisabled'); // Mostrando novamente todas as letras do teclado
@@ -85,7 +85,13 @@ function Gameview() {
                 document.querySelector('.area_palavra').style.display = 'none'; // Ocultando palavra
                 document.querySelector('.area_keyboard').style.display = 'none'; // Ocultando o Keyboard
                 setButtonRestart(true)
-                Alert(false, 'Parabéns', 'Você acertou todas as Letras !', 7000, true)
+                Alert(
+                    false, 
+                    'Parabéns', 
+                    'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>!', 
+                    7000, 
+                    true
+                )
             }
         }
 
@@ -93,8 +99,13 @@ function Gameview() {
             document.querySelector('.area_palavra').style.display = 'none'; // Ocultando palavra
             document.querySelector('.area_keyboard').style.display = 'none'; // Ocultando o Keyboard
             setButtonRestart(true)
-            Alert(false, 'Game Over', 'Você não completou a palavra.', 7000, true)
-            
+            Alert(
+                false, 
+                'Game Over', 
+                'Você não completou a palavra ! <br/> a palavra era: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>', 
+                7000, 
+                true
+            )         
         } 
         
     }, [vidasRestantes, letrasCorretas]);
@@ -110,12 +121,12 @@ function Gameview() {
 
     return (
         <>
-            <div id={style.section_gameView}>
+            <div id='sectionPage'>
                 {
                     !gameStarted ? (
                         <>
-                            <div id={style.lobby}>
-                                <button className='btnStartGame' onClick={startGame}>Começar jogo</button>
+                            <div id={style.lobby} className="painel">
+                                <Button variant="contained" onClick={startGame}>Começar Jogo</Button>
                             </div>
                         </>
                     ) : (
@@ -137,7 +148,14 @@ function Gameview() {
                                     </div>
                                     {
                                         buttonRestart ? (
-                                            <button className='btnStartGame' onClick={restartGame} display={buttonRestart}>Jogar novamente</button>
+                                            <Button 
+                                                variant="contained" 
+                                                onClick={restartGame} 
+                                                display={buttonRestart}
+                                                style={{marginTop: '30px'}}
+                                            >
+                                                Jogar novamente
+                                            </Button>
                                         ) : (
                                             <></>
                                         )
