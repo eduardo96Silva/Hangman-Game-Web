@@ -11,8 +11,20 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { db } from '../services/firebase';
+import { collection } from 'firebase/firestore/lite';
+import { getDocs } from 'firebase/firestore/lite';
 
 function Cadastro() {
+    
+    // async function getUsers() {
+    //     const usuariosCollection = collection(db, 'usuarios');
+    //     const usuariosDocs = await getDocs(usuariosCollection);
+    //     const usuariosList = usuariosDocs.docs.map(doc => doc.data());
+    //     return console.log(usuariosList);
+    // }
+
+
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -25,18 +37,40 @@ function Cadastro() {
                     <div className={style.content}>
                         <div>
                             <p>
-                                <b style={{ fontSize: '1.2em', color: '#1565c0' }}>Cadastro</b> <br />
+                                <b style={{ fontSize: '1.2em', color: '#1565c0' }}>Cadastro</b> 
+                                <br />
                                 <span>Crie um usuário e senha</span>
                             </p>
                         </div>
 
                         <div id={style.textFields}>
-                            <TextField id="filled-basic" label="Nome de usuário" variant="filled" /><br />
+                            <TextField id="filled-basic" label="Nome de usuário" variant="filled" />
+                            <br />
 
                             <FormControl variant="filled">
-                                <InputLabel htmlFor="filled-adornment-password">Senha</InputLabel>
+                                <InputLabel htmlFor="inputSenha">Senha</InputLabel>
                                 <FilledInput
-                                    id="filled-adornment-password"
+                                    id="inputSenha"
+                                    type={showPassword ? 'text' : 'password'}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
+                            <br />
+                            <FormControl variant="filled">
+                                <InputLabel htmlFor="inputConfirmSenha">Confirmar senha</InputLabel>
+                                <FilledInput
+                                    id="inputConfirmSenha"
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -55,7 +89,7 @@ function Cadastro() {
 
                             <br />
 
-                            <Button variant="contained">Entrar</Button>
+                            <Button variant="contained">Criar conta</Button>
 
                         </div>
 

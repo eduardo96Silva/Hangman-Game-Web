@@ -33,8 +33,10 @@ function Gameview() {
 
         // Alterando estado de alguns elementos para hide e show
         setButtonRestart(false)
-        document.querySelector('.area_palavra').style.display = 'flex';
-        document.querySelector('.area_keyboard').style.display = 'flex'; 
+        if (document.querySelector('.area_palavra') && document.querySelector('.area_keyboard')){
+            document.querySelector('.area_palavra').style.display = 'flex';
+            document.querySelector('.area_keyboard').style.display = 'flex'
+        }
     };
 
     // Reiniciar o Jogo
@@ -151,7 +153,6 @@ function Gameview() {
                                             <Button 
                                                 variant="contained" 
                                                 onClick={restartGame} 
-                                                display={buttonRestart}
                                                 style={{marginTop: '30px'}}
                                             >
                                                 Jogar novamente
