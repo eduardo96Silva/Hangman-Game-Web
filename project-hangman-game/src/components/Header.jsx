@@ -19,7 +19,7 @@ function Header() {
                 <div id={style.menu}>
                     <Link to='/' className={location.pathname == '/' ? style.active : ''}>Jogar</Link>
                     <Link to='/Scoreboard' className={location.pathname == '/Scoreboard' ? style.active : ''}>Scoreboard</Link>
-                    <Link to='/Conta' className={location.pathname == '/Conta' ? style.active : ''}>Conta</Link>
+                    <Link to='/Login' className={location.pathname == '/Login' ? style.active : ''}>Conta</Link>
                 </div>
             </header>
         </>
