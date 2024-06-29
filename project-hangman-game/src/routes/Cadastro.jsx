@@ -11,19 +11,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '../services/firebase';
+import { db } from '../data/services/firebase-config';
 import { collection } from 'firebase/firestore/lite';
 import { getDocs } from 'firebase/firestore/lite';
 
 function Cadastro() {
-    
-    // async function getUsers() {
-    //     const usuariosCollection = collection(db, 'usuarios');
-    //     const usuariosDocs = await getDocs(usuariosCollection);
-    //     const usuariosList = usuariosDocs.docs.map(doc => doc.data());
-    //     return console.log(usuariosList);
-    // }
-
 
 
     const [showPassword, setShowPassword] = useState(false);
