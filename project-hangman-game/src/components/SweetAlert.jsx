@@ -35,7 +35,6 @@ export function Alert(icon, title, text, timer, showConfirmButton) {
                 position: 'center',
                 icon: icon,
                 title: title,
-                text: text,
                 showConfirmButton: showConfirmButton,
                 confirmButtonColor: 'rgba(0,100,0,1)',
                 timer: timer,
@@ -56,7 +55,7 @@ export function Alert(icon, title, text, timer, showConfirmButton) {
                 position: 'center',
                 icon: icon,
                 title: title,
-                text: text,
+                html: text,
                 showConfirmButton: showConfirmButton,
                 timer: timer
             })

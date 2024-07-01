@@ -11,16 +11,24 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '../data/services/firebase-config';
-import { collection } from 'firebase/firestore/lite';
-import { getDocs } from 'firebase/firestore/lite';
+import { Alert } from '../components/SweetAlert';
 
 function Cadastro() {
-
-
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
+
+    const validarDados = () => {
+        const nickname = document.querySelector('#input-nickname').value
+        const email = document.querySelector('#input-email').value
+        const senha = document.querySelector('#input-senha').value    
+        const confirmSenha = document.querySelector('#input-confirmSenha').value    
+
+        var validationEmail = /\S+@\S+\.\S+/;
+        var validationSenha = /[0-9a-zA-Z$*&@#]{8,}/;
+
+    }
+
 
     return (
         <>
@@ -36,13 +44,15 @@ function Cadastro() {
                         </div>
 
                         <div id={style.textFields}>
-                            <TextField id="filled-basic" label="Nome de usuário" variant="filled" />
+                            <TextField id="input-nickname" label="Nome de usuário" variant="filled" />
+                            <br />
+                            <TextField id="input-email" label="Email" variant="filled" />
                             <br />
 
                             <FormControl variant="filled">
-                                <InputLabel htmlFor="inputSenha">Senha</InputLabel>
+                                <InputLabel htmlFor="input-senha">Senha</InputLabel>
                                 <FilledInput
-                                    id="inputSenha"
+                                    id="input-senha"
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -60,9 +70,9 @@ function Cadastro() {
                             </FormControl>
                             <br />
                             <FormControl variant="filled">
-                                <InputLabel htmlFor="inputConfirmSenha">Confirmar senha</InputLabel>
+                                <InputLabel htmlFor="input-confirmSenha">Confirmar senha</InputLabel>
                                 <FilledInput
-                                    id="inputConfirmSenha"
+                                    id="input-confirmSenha"
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -81,7 +91,7 @@ function Cadastro() {
 
                             <br />
 
-                            <Button variant="contained">Criar conta</Button>
+                            <Button variant="contained" onClick={validarDados}>Criar conta</Button>
 
                         </div>
 

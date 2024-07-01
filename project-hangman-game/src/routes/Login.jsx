@@ -31,7 +31,7 @@ function Login() {
                         </div>
 
                         <div id={style.textFields}>
-                            <TextField id="filled-basic" label="Nome de usuário" variant="filled" /><br />
+                            <TextField id="filled-basic" label="Email" variant="filled" /><br />
 
                             <FormControl variant="filled">
                                 <InputLabel htmlFor="filled-adornment-password">Senha</InputLabel>
