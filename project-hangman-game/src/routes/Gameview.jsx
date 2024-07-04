@@ -133,7 +133,7 @@ function Gameview() {
                         </>
                     ) : (
                         <>
-                            <div id={style.view}>
+                            <div id={style.view} className="painel">
                                 <section id={style.tableGame}>
 
                                     <div id={style.descript}>

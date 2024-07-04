@@ -10,9 +10,9 @@ function App() {
     <>
       <div id='allContentPage'>
         <Header/>
-        <Outlet/>
-        <Footer/>
+        <Outlet/>     
       </div>
+      <Footer/>
     </>
   )
 }
