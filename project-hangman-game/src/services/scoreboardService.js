@@ -1,11 +1,11 @@
-import { db } from '../data/services/firebase-config';
+import { db } from '../services/firebaseConfig';
 import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore/lite';
 import { Alert } from '../components/SweetAlert';
 
-export const createScore = async (score, idUser) => {
+export const createScore = async (score, nickname) => {
     try {
-        await addDoc(collection(db, "score"), {
-            idUser: idUser,
+        await addDoc(collection(db, "scores"), {
+            nickname: nickname,
             score: score
         });
         console.log('Score inicial do usuário criado com sucesso')

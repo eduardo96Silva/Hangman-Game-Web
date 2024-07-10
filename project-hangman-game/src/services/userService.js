@@ -1,7 +1,8 @@
-import { db } from '../data/services/firebase-config';
+import { db } from '../services/firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore/lite';
-import { Alert } from '../components/SweetAlert';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc, query, where } from 'firebase/firestore/lite';
+import { createScore } from './scoreboardService';
+
 
 export const getUsers = async () => {
     try {
@@ -15,6 +16,27 @@ export const getUsers = async () => {
         throw error;
     }
 }
+
+
+export const getUserByEmail = async (email, save) => {
+    try {
+        const usuariosCollection = collection(db, "usuarios");
+        const q = query(usuariosCollection, where("email", "==", email));
+        const response = await getDocs(q);
+        if(save){
+            response.forEach((doc) => {
+                localStorage.setItem('idAvatar', doc.data().idAvatar)
+                localStorage.setItem('nickname', doc.data().nickname)
+                localStorage.setItem('email', doc.data().email)
+            })
+        }
+        return response
+
+    } catch (error) {
+        console.log('Erro ao buscar usuario por email', error)
+    }
+}
+
 
 export const postUser = async (idAvatar, nickname, email, senha) => {
     try {
@@ -31,20 +53,8 @@ export const postUser = async (idAvatar, nickname, email, senha) => {
             senha: senha
         });
 
-        await addDoc(collection(db, "scores"), {
-            nickname: nickname,
-            score: 0
-        });
+        createScore(0, nickname)
 
-        createScore(0, user.uid)
-
-        Alert(
-            'success',
-            'Cadastro realizado com sucesso !',
-            'Enviamos um link de verificação para seu email <br/>Verifique sua caixa de entrada ou spam',
-            '9000',
-            true
-        )
         console.log("Documento de usuário registrado com ID: ", docRef.id);
         console.log(user);
 

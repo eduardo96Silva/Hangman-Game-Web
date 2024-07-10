@@ -49,11 +49,13 @@
     flex-direction: column;
     align-items: center;
 }
-
+#palavra{
+    display: flex;
+}
 #palavra span{
+    text-align: center;
+    width: 30px;
     font-size: 4em;
-    padding-left: 10px;
-    padding-right: 10px;
     margin-left: 9px;
     margin-right: 9px;
     border-bottom: 4px solid rgb(14, 68, 150);

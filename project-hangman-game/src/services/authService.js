@@ -1,6 +1,5 @@
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { Alert } from '../../components/SweetAlert';
-
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useState } from "react";
 
 export const logIn = async (email, senha) => {
     try {
@@ -9,31 +8,28 @@ export const logIn = async (email, senha) => {
         const user = userCredential.user;
 
         if (!user.emailVerified) {
-            Alert(
-                'warning',
-                'Verificação pendente',
-                'Por favor, verifique seu email antes de fazer login.',
-                '9000',
-                true
-            );
             await signOut(auth);
-            return false;
+            return 'Email Verification';
+
+        } else {
+
+            return 'Success';
         }
 
-        return true;
     } catch (error) {
-        console.log(error);
-        return false;
+        return 'Invalid Credentials';
     }
 }
 
 export const logOut = async (auth) => {
-    try{
+    try {
         signOut(auth)
-        console.log('Usuário desconectado com sucesso')
+        localStorage.clear()
+        console.log('Usuário desconectado com sucesso')    
 
-    } catch (error){
+    } catch (error) {
         console.log(error)
         console.log('Não foi possível fazer logOut', error)
     }
 }
+

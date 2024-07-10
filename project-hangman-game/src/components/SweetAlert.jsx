@@ -50,13 +50,30 @@ export function Alert(icon, title, text, timer, showConfirmButton) {
         )
 
     } else {
+
+        let color = null
+
+        switch(icon){
+            case 'warning':
+                color = 'rgba(180,180,0,0.90)';
+                break;
+            case 'success':
+                color = 'rgba(0,180,0,0.50)';
+                break;
+            case 'error':
+                color = 'rgba(180,0,0,0.50)';
+                break;
+        }
+
         return (
             Swal.fire({
                 position: 'center',
                 icon: icon,
+                iconColor: color,
                 title: title,
                 html: text,
                 showConfirmButton: showConfirmButton,
+                confirmButtonColor: color,
                 timer: timer
             })
         )

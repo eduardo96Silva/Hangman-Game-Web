@@ -47,7 +47,8 @@
     font-weight: 600;
     color: #0c0c0c;
 }
-a{   
+
+#header a{   
     color: #3b3b3b;
     cursor:none;
     font-style: normal;
@@ -59,7 +60,7 @@ a{
     font-weight: lighter;
 }
 
-a:hover{
+#header a:hover{
     cursor: pointer;
     color: #000000;
     border-bottom: 3px solid rgba(0, 0, 0, 0.651);

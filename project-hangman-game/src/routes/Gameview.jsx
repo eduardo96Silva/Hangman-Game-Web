@@ -83,8 +83,7 @@ function Gameview() {
                     qtdLetrasOcultas++;
                 }
             }
-            if(qtdLetrasOcultas == 0){
-                document.querySelector('.area_palavra').style.display = 'none'; // Ocultando palavra
+            if(qtdLetrasOcultas == 0){ // Condição caso o usuário perder todas as chances
                 document.querySelector('.area_keyboard').style.display = 'none'; // Ocultando o Keyboard
                 setButtonRestart(true)
                 Alert(
