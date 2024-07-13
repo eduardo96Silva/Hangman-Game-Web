@@ -1,0 +1,72 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 500px;
+    padding: 30px 0px;
+}
+#selectionAvatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px 0px;
+    transition: all 0.8s;
+}
+#selectionAvatar:hover{
+    background-color: rgb(235, 235, 235);
+    box-shadow: rgb(70, 70, 70) 0px 0px 0.25em, rgba(0, 0, 0, 0.288) 0px 0.25em 1em;
+    cursor: pointer;
+}
+#selectionAvatar h4{
+    margin: 0 !important;
+    color: #424242;
+}
+#sectionAvatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#sectionAvatar img{
+    width: 80px;
+    margin: 10px 10px;
+    transition: all 0.3s;
+}
+#sectionAvatar img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+#sectionAvatar span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#textFields{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.painel{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background: rgb(255,255,255);
+    box-shadow: rgb(67, 71, 85) 0px 0px 0.25em, rgba(0, 0, 0, 0.39) 0px 0.25em 1em;
+}
+
+#editNome{
+    display: flex;
+    align-items: center;
+}
+#editNome button{
+    height: 100%;
+}
