@@ -5,7 +5,9 @@ import hangmanLogo from '/imgs/hangman-logo.png'
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
-
+import Avatar from '@mui/material/Avatar';
+import avatarList from '../avatares.json'
+import { useEffect, useState } from 'react';
 
 function Header() {
     const { currentUser } = useAuth();
@@ -29,7 +31,11 @@ function Header() {
                     {
                         currentUser ? (
                             <Link to='/Perfil' className={location.pathname == '/Perfil' ? style.active : ''}>
-                                Conta
+                                <span id={style.navItemPerfil}>
+                                    <Avatar alt="Avatar" src={`/imgs/avatar/${avatarList[localStorage.getItem('idAvatar')]}`}/>
+                                    &nbsp; 
+                                    {localStorage.getItem('nickname')}
+                                </span>
                             </Link>
                         ) : (
                             <Link to='/Login' className={location.pathname == '/Login' ? style.active : ''}>

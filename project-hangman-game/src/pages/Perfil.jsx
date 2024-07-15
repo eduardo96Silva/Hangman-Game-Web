@@ -5,24 +5,29 @@ import { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import { logOut } from '../services/authService';
 import Button from '@mui/material/Button';
-import Loading from '../components/Loading';
-import { useAuth } from '../contexts/authContext';
 import style from '../css/Perfil.module.css'
 import { TextField } from '@mui/material';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Avatar from '@mui/material/Avatar';
 
 import avatarList from '../avatares.json'
+import { updateAvatarById, updateNicknameById } from '../services/userService';
 
 function Perfil() {
+
     const navigate = useNavigate();
+
 
     const idAvatar = localStorage.getItem('idAvatar')
     const nickname = localStorage.getItem('nickname')
     const email = localStorage.getItem('email')
-    
+    const idUser = localStorage.getItem('idDoc')
+
+    const [inputName, setInputName] = useState(nickname)
+
     const [hasSelectAvatar, setHasSelectAvatar] = useState(false)
     const [avatarSelecionado, setAvatarSelecionado] = useState(avatarList[idAvatar])
 
@@ -32,16 +37,31 @@ function Perfil() {
     const openSelectionAvatar = () => {
         setHasSelectAvatar(true)
     }
-    const selectAvatar = (event) => {
+    const selectAvatar = async (event) => {
         const indexAvatar = parseInt(event.target.id)
         setHasSelectAvatar(false)
         setAvatarSelecionado(avatarList[indexAvatar])
-        // Aqui vai ter que salvar o novo avatar no banco //
+        updateAvatarById(idUser, indexAvatar)
+        location.reload()
     }
 
     const editNome = () => {
         setInputDisable((status) => !status);
         statusModeEdit === "Editar Nome" ? setStatusModeEdit("Salvar") : setStatusModeEdit("Editar Nome")
+
+        if (statusModeEdit === 'Salvar' && inputName !== nickname) {
+
+            updateNicknameById(idUser, inputName)
+
+        }
+    }
+
+    const changeInputName = (event) => {
+        setInputName(event.target.value)
+    }
+
+    const cancelEditAvatar = () => {
+        setHasSelectAvatar(false)
     }
 
     const sairDaConta = () => {
@@ -57,7 +77,6 @@ function Perfil() {
 
                     {
                         hasSelectAvatar ? (<>
-
                             <div id={style.sectionAvatar}>
                                 <h4>Selecione um avatar</h4>
                                 <span>
@@ -88,6 +107,11 @@ function Perfil() {
                                     <img id='18' src={`/imgs/avatar/${avatarList[18]}`} onClick={selectAvatar} />
                                     <img id='19' src={`/imgs/avatar/${avatarList[19]}`} onClick={selectAvatar} />
                                 </span>
+                                <br />
+                                <Button variant="contained" onClick={cancelEditAvatar}>
+                                    <ArrowBackIcon color='#fff'/>
+                                    Voltar
+                                </Button>
                             </div>
 
 
@@ -105,11 +129,12 @@ function Perfil() {
                                             id="nickname"
                                             variant="outlined"
                                             disabled={inputDisable}
-                                            defaultValue={nickname}
-                                            style={{width: '70%'}}
+                                            defaultValue={inputName}
+                                            onChange={changeInputName}
+                                            style={{ width: '70%' }}
                                         />
-                                        <Button variant="outlined" style={{width: '30%'}} onClick={editNome}>
-                                            <EditIcon color='blue'/> {statusModeEdit}
+                                        <Button variant="outlined" style={{ width: '30%' }} onClick={editNome}>
+                                            <EditIcon color='blue' /> {statusModeEdit}
                                         </Button>
                                     </div>
                                     <br />

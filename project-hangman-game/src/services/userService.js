@@ -23,11 +23,12 @@ export const getUserByEmail = async (email, save) => {
         const usuariosCollection = collection(db, "usuarios");
         const q = query(usuariosCollection, where("email", "==", email));
         const response = await getDocs(q);
-        if(save){
+        if (save) {
             response.forEach((doc) => {
                 localStorage.setItem('idAvatar', doc.data().idAvatar)
                 localStorage.setItem('nickname', doc.data().nickname)
                 localStorage.setItem('email', doc.data().email)
+                localStorage.setItem('idDoc', doc.id)
             })
         }
         return response
@@ -66,32 +67,33 @@ export const postUser = async (idAvatar, nickname, email, senha) => {
     }
 };
 
-
-export const updateNickname = async (idUser, nickname) => {
+export const updateNicknameById = async (id, newNickname) => {
     try {
-        const docRef = doc(db, "usuarios", idUser);
-        await updateDoc(docRef, {
-            nickname: nickname
+        const userRef = doc(db, "usuarios", id);
+        await updateDoc(userRef, {
+            nickname: newNickname
         });
 
+        localStorage.setItem('nickname', newNickname)
+        console.log('Nickname atualizado com sucesso');
     } catch (error) {
-        console.error('Erro ao atualizar nickname ', error);
-        throw error;
+        console.error('Erro ao atualizar o nome:', error);
     }
-}
+};
 
-export const updateAvatar = async (idUser, idAvatar) => {
+
+export const updateAvatarById = async (idDoc, newIdAvatar) => {
     try {
-        const docRef = doc(db, "usuarios", idUser);
-        await updateDoc(docRef, {
-            idAvatar: idAvatar
+        localStorage.setItem('idAvatar', newIdAvatar)
+        const userRef = doc(db, "usuarios", idDoc);
+        await updateDoc(userRef, {
+            idAvatar: newIdAvatar
         });
-
+        console.log('Avatar atualizado com sucesso');
     } catch (error) {
-        console.error('Erro ao atualizar avatar ', error);
-        throw error;
+        console.error('Erro ao atualizar o avatar:', error);
     }
-}
+};
 
 export const deleteUser = async (idUser) => {
     try {

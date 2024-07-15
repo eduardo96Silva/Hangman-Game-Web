@@ -12,7 +12,7 @@ export const logIn = async (email, senha) => {
             return 'Email Verification';
 
         } else {
-
+            
             return 'Success';
         }
 
