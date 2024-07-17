@@ -12,11 +12,11 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserByEmail } from '../services/userService';
-import { Alert } from '../components/SweetAlert';
+import { Alert, AlertEmailPendingVerification } from '../components/SweetAlert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { logIn } from '../services/authService';
-import { getAuth } from 'firebase/auth';
+import { getAuth, sendEmailVerification, signOut } from 'firebase/auth';
 
 function Login() {
 
@@ -70,7 +70,7 @@ function Login() {
         const emailExists = await getUserByEmail(email, false)
         setIsLoading('none');
 
-        if(emailExists.empty){
+        if (emailExists.empty) {
             Alert(
                 'warning',
                 '',
@@ -81,23 +81,23 @@ function Login() {
 
         } else {
             setIsLoading('flex');
-            const response = await logIn(email.trim(),senha)
-            
-            if(response === 'Success'){
+            const response = await logIn(email.trim(), senha)
+
+            if (response === 'Success') {
                 await getUserByEmail(email.trim(), true)
                 setIsLoading('none');
                 navigate('/Perfil')
 
-            } else if (response === 'Email Verification'){
+            } else if (response === 'Email Verification') {
                 setIsLoading('none');
-                Alert(
+                AlertEmailPendingVerification(
                     'warning',
                     'Verificação pendente',
                     'Por favor, verifique seu email antes de fazer login.',
-                    '',
-                    true
+                    true,true,
+                    email,senha
                 );
-            } else if (response === 'Invalid Credentials'){
+            } else if (response === 'Invalid Credentials') {
                 setIsLoading('none');
                 Alert(
                     'warning',
@@ -112,7 +112,7 @@ function Login() {
                     'error',
                     'Ops...',
                     'Houve um problema da nossa parte <br/>Por favor tente novamente mais tarde.',
-                    '9000'          
+                    '9000'
                 );
             }
         }
@@ -136,10 +136,10 @@ function Login() {
                         </div>
 
                         <div id={style.textFields}>
-                            <TextField 
-                                id="input-email" 
-                                label="Email" 
-                                variant="filled" 
+                            <TextField
+                                id="input-email"
+                                label="Email"
+                                variant="filled"
                                 onChange={handleChangeEmail}
                             /><br />
 

@@ -11,7 +11,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from '../components/SweetAlert';
 import { getUsers, postUser } from '../services/userService';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -21,6 +21,7 @@ import avatarList from '../avatares.json'
 
 function Cadastro() {
     const [isLoading, setIsLoading] = useState('none');
+    const navigate = useNavigate()
 
     const [hasSelectAvatar, setHasSelectAvatar] = useState(false)
     const [avatarSelecionado, setAvatarSelecionado] = useState(avatarList[0])
@@ -52,8 +53,6 @@ function Cadastro() {
         setAvatarSelecionado(avatarList[indexAvatar])
         setIdAvatar(indexAvatar)
     }
-
-
 
     const validadores = {
         nomeUtilizador: (valor) => valor.trim() !== '',
@@ -120,15 +119,15 @@ function Cadastro() {
 
     useEffect(() => {
         if (dadosValidados) {
+            setIsLoading('flex');
             try {
-                setIsLoading('flex');
                 postUser(
                     idAvatar,
                     nomeUtilizador.trim(),
                     email.trim().toLowerCase(),
-                    senha.trim()
-
+                    senha.trim()             
                 ).then(() => {
+                    navigate('/Login')
                     Alert(
                         'success',
                         'Cadastro realizado com sucesso !',

@@ -1,7 +1,6 @@
 import { db } from '../services/firebaseConfig';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, deleteUser } from "firebase/auth";
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc, query, where } from 'firebase/firestore/lite';
-import { createScore } from './scoreboardService';
 
 
 export const getUsers = async () => {
@@ -29,6 +28,7 @@ export const getUserByEmail = async (email, save) => {
                 localStorage.setItem('nickname', doc.data().nickname)
                 localStorage.setItem('email', doc.data().email)
                 localStorage.setItem('idDoc', doc.id)
+                localStorage.setItem('score', doc.data().score)
             })
         }
         return response
@@ -51,10 +51,9 @@ export const postUser = async (idAvatar, nickname, email, senha) => {
             idAvatar: idAvatar,
             nickname: nickname,
             email: email,
-            senha: senha
+            senha: senha,
+            score: 0,
         });
-
-        createScore(0, nickname)
 
         console.log("Documento de usuário registrado com ID: ", docRef.id);
         console.log(user);
@@ -95,12 +94,17 @@ export const updateAvatarById = async (idDoc, newIdAvatar) => {
     }
 };
 
-export const deleteUser = async (idUser) => {
-    try {
-        await deleteDoc(doc(db, "usuarios", idUser));
+export const deleteAccount = async (idUser) => {
 
-    } catch (error) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    await deleteUser(user).then(() => {
+        deleteDoc(doc(db, "usuarios", idUser));
+        console.log('Usuário deletado com sucesso');
+    }).catch((error) => {
         console.error('Erro ao deletar usuario ', error);
         throw error;
-    }
+    });
+
 }

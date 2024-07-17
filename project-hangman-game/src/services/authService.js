@@ -8,11 +8,10 @@ export const logIn = async (email, senha) => {
         const user = userCredential.user;
 
         if (!user.emailVerified) {
-            await signOut(auth);
+            // await signOut(auth);
             return 'Email Verification';
 
-        } else {
-            
+        } else {  
             return 'Success';
         }
 

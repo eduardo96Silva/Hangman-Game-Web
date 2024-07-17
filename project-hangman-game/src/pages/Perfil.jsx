@@ -1,7 +1,7 @@
 
 import '../css/index.css'
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { logOut } from '../services/authService';
 import Button from '@mui/material/Button';
@@ -14,7 +14,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Avatar from '@mui/material/Avatar';
 
 import avatarList from '../avatares.json'
-import { updateAvatarById, updateNicknameById } from '../services/userService';
+import { getUsers, updateAvatarById, updateNicknameById } from '../services/userService';
+import { Alert, AlertDeleteAccount } from '../components/SweetAlert';
 
 function Perfil() {
 
@@ -39,20 +40,26 @@ function Perfil() {
     }
     const selectAvatar = async (event) => {
         const indexAvatar = parseInt(event.target.id)
-        setHasSelectAvatar(false)
         setAvatarSelecionado(avatarList[indexAvatar])
-        updateAvatarById(idUser, indexAvatar)
+        setHasSelectAvatar(false)
+        await updateAvatarById(idUser, indexAvatar)
         location.reload()
     }
 
-    const editNome = () => {
+    const editNome = async () => {
         setInputDisable((status) => !status);
         statusModeEdit === "Editar Nome" ? setStatusModeEdit("Salvar") : setStatusModeEdit("Editar Nome")
 
         if (statusModeEdit === 'Salvar' && inputName !== nickname) {
-
+            let users = await getUsers();
+            for (let user of users) {
+                if (user.nickname === inputName) {
+                    Alert('warning', '', 'Nome de utilizador já existente!');
+                    document.querySelector('#nickname').value = nickname
+                    return;
+                }
+            }
             updateNicknameById(idUser, inputName)
-
         }
     }
 
@@ -67,6 +74,10 @@ function Perfil() {
     const sairDaConta = () => {
         logOut(getAuth())
         navigate('/Login')
+    }
+
+    const deletarConta = () => {
+        AlertDeleteAccount('warning', '', 'Deseja mesmo deletar sua conta ?', true, idUser)
     }
 
 
@@ -109,7 +120,7 @@ function Perfil() {
                                 </span>
                                 <br />
                                 <Button variant="contained" onClick={cancelEditAvatar}>
-                                    <ArrowBackIcon color='#fff'/>
+                                    <ArrowBackIcon color='#fff' />
                                     Voltar
                                 </Button>
                             </div>
@@ -151,7 +162,7 @@ function Perfil() {
                                         <LogoutRoundedIcon color={'#fff'} />
                                     </Button>
                                     <br />
-                                    <Button onClick={sairDaConta} variant="outlined" color='error'>
+                                    <Button onClick={deletarConta} variant="outlined" color='error'>
                                         Deletar conta&nbsp;
                                         <DeleteIcon color={'#fff'} />
                                     </Button>

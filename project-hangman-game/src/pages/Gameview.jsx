@@ -12,8 +12,14 @@ import { useEffect } from 'react'
 import palavras from '../data/palavras'
 import { Alert } from '../components/SweetAlert'
 import Button from '@mui/material/Button'
+import { useAuth } from '../contexts/authContext';
+import fireIcon from '/imgs/icon-sequence.gif'
+import { updateScore } from '../services/scoreboardService'
 
 function Gameview() {
+    const {currentUser} = useAuth()
+    const [score, setScore] = useState(parseInt(localStorage.getItem('score')))
+    const [pontuacaoAtual, setPontuacaoAtual] = useState(0)
 
     let stages = [stage1, stage2, stage3, stage4, stage5, stage6, stage7]
     const [gameStarted, setGameStarted] = useState(false);
@@ -83,16 +89,17 @@ function Gameview() {
                     qtdLetrasOcultas++;
                 }
             }
-            if(qtdLetrasOcultas == 0){ // Condição caso o usuário perder todas as chances
+            if(qtdLetrasOcultas == 0){ // Condição caso o usuário Ganhar
                 document.querySelector('.area_keyboard').style.display = 'none'; // Ocultando o Keyboard
                 setButtonRestart(true)
                 Alert(
                     false, 
                     'Parabéns', 
-                    'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>!', 
-                    7000, 
+                    'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/><br/>E ganhou +1 ponto !', 
+                    '', 
                     true
                 )
+                setPontuacaoAtual(pontuacaoAtual+1)
             }
         }
 
@@ -102,15 +109,31 @@ function Gameview() {
             setButtonRestart(true)
             Alert(
                 false, 
-                'Game Over', 
-                'Você não completou a palavra ! <br/> a palavra era: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>', 
-                7000, 
+                'Parabéns', 
+                'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/><br/>E também atingiu um novo record em sequência de vitórias !<br/>Record atual: '+ pontuacaoAtual, 
+                '', 
                 true
-            )         
+            )      
+            setPontuacaoAtual(0)
         } 
         
     }, [vidasRestantes, letrasCorretas]);
 
+    useEffect(()=>{
+        if(pontuacaoAtual > score){
+            setScore(pontuacaoAtual)
+            localStorage.setItem('score', pontuacaoAtual)
+            Alert(
+                '', 
+                'Parabéns', 
+                'Você acaba de atingir um novo record em sequência de vitórias ! <br/>Seu novo record: '+localStorage.getItem('score'),
+                '',
+                true
+            )       
+            updateScore(localStorage.getItem('idDoc'), pontuacaoAtual)
+        }
+        
+    }, [pontuacaoAtual])
 
     // Criando a quantidade de spans de acordo com a quantidade de letras que a palavra possui
     // E após cada acerto, a letra fica visivel
@@ -137,8 +160,20 @@ function Gameview() {
 
                                     <div id={style.descript}>
                                         <span>Categoria: <b>{palavraSelecionada.categoria}</b></span>
-                                        <span>Quantidade de Letras: <b>{palavraSelecionada.palavra.length}</b></span>
                                         <span>Vidas restantes: <b style={{ color: 'red', fontSize: '1.4em' }}>{vidasRestantes}</b></span>
+                                        {
+                                            currentUser ? (<>
+                                                <span>
+                                                    Seu record:&nbsp;
+                                                    <b>{score}</b>
+                                                </span>
+                                                <span>
+                                                    Pontuação atual:&nbsp;
+                                                    {pontuacaoAtual === 0 ? ('') : (<img src={fireIcon} width={'20px'}/>)}                                                   
+                                                    <b>{pontuacaoAtual}</b>
+                                                </span>
+                                            </>) : ('')
+                                        }
                                     </div>
 
                                     <div id={style.areaForca}>

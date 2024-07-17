@@ -1,38 +1,29 @@
 import { db } from '../services/firebaseConfig';
-import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore/lite';
-import { Alert } from '../components/SweetAlert';
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore/lite';
 
-export const createScore = async (score, nickname) => {
+export const getScores = async () => {
     try {
-        await addDoc(collection(db, "scores"), {
-            nickname: nickname,
-            score: score
-        });
-        console.log('Score inicial do usuário criado com sucesso')
+        const scoresCollection = await collection(db, 'usuarios')
+        const q = query(scoresCollection, orderBy("score", "desc"), where("score", ">", 0))
+        const listDocs = await getDocs(q)
+        // console.log(listDocs.docs[0].data().nickname)
+        return listDocs;
+
     } catch (error) {
-        console.log('Houve um erro ao criar o score inicial do usuário: ', error)
-        throw error;
+        console.log('Não foi possível trazer os scores', error);
     }
 }
 
-export const refreshScoreboard = async (nickname) => {
+export const updateScore = async (id, newScore) => {
     try {
-        const scoresCollection = await collection(db, 'scores').orderBy("score", "desc").get();
-        const player = nickname;
-        let rank = 1;
-        for (const doc of scoresCollection.docs) {
-            const user = `${doc.get("nickname")}`;
-            if (user === player) {
-                return {
-                    nickname: player,
-                    rank: rank,
-                    score: doc.get("score"),
-                };
-            }
-            rank++;
-        }
+        const userRef = doc(db, "usuarios", id);
+        await updateDoc(userRef, {
+            score: newScore
+        });
+
+        localStorage.setItem('score', newScore)
+        console.log('Score atualizado com sucesso');
     } catch (error) {
-        console.log('Erro ao ler o rank', error)
-        throw error;
+        console.error('Erro ao atualizar o score:', error);
     }
 }
