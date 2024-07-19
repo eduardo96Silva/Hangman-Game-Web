@@ -1,11 +1,12 @@
-.content{
+.content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 500px;
     padding: 30px 0px;
 }
-#selectionAvatar{
+
+#selectionAvatar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,15 +16,18 @@
     padding: 20px 0px;
     transition: all 0.8s;
 }
-#selectionAvatar:hover{
+
+#selectionAvatar:hover {
     background-color: rgb(235, 235, 235);
     box-shadow: rgb(70, 70, 70) 0px 0px 0.25em, rgba(0, 0, 0, 0.288) 0px 0.25em 1em;
     cursor: pointer;
 }
-#selectionAvatar h4{
+
+#selectionAvatar h4 {
     margin: 0 !important;
     color: #424242;
 }
+
 #sectionAvatar {
     display: flex;
     flex-direction: column;
@@ -31,43 +35,96 @@
     justify-content: space-between;
     padding-bottom: 30px;
 }
-#sectionAvatar img{
+
+#sectionAvatar img {
     width: 80px;
     margin: 10px 10px;
     transition: all 0.3s;
 }
-#sectionAvatar img:hover{
+
+#sectionAvatar img:hover {
     transform: scale(1.2);
     cursor: pointer;
 }
-#sectionAvatar span{
+
+#sectionAvatar span {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 
-#textFields{
+#textFields {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.painel{
+.painel {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 45px;
     margin-bottom: 30px;
     border-radius: 10px;
-    background: rgb(255,255,255);
+    background: rgb(255, 255, 255);
     box-shadow: rgb(67, 71, 85) 0px 0px 0.25em, rgba(0, 0, 0, 0.39) 0px 0.25em 1em;
 }
 
-#editNome{
+#editNome {
     display: flex;
     align-items: center;
 }
-#editNome button{
+
+#editNome button {
     height: 100%;
+}
+
+
+@media only screen and (min-width:320px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    .painel{
+        margin-top: 0px;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    .buttonActionMui{
+        height: 50px;
+    }
+    #selectionAvatar{
+        box-shadow: none;
+        background-color: #fff;
+    }
+  
+}
+
+@media only screen and (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */
+    #textFields{
+        padding: 0px 50px;
+    }
+}
+
+@media only screen and (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    #textFields{
+        padding: 0px 20px;
+    }
+
+}
+
+@media only screen and (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .painel{
+        margin-top: 45px;
+        border-radius: 10px;
+        box-shadow: rgb(67, 71, 85) 0px 0px 0.25em, rgba(0, 0, 0, 0.39) 0px 0.25em 1em;
+    }
+    .buttonActionMui{
+        height: 40px;
+    }
+    #selectionAvatar{
+        box-shadow: none;
+        background-color: #e0e0e0;
+    }
 }

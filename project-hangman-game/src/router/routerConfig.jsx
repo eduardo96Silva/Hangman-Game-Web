@@ -8,6 +8,7 @@ import Login from '../pages/Login.jsx';
 import Cadastro from '../pages/Cadastro.jsx';
 import NoPage from '../pages/NoPage.jsx';
 import Perfil from '../pages/Perfil.jsx';
+import Sobre from '../pages/Sobre.jsx';
 
 import { useAuth } from '../contexts/authContext.jsx';
 import { Navigate } from 'react-router-dom';
@@ -29,7 +30,8 @@ export const routerConfig = createBrowserRouter([
             { path: "/Login", element: <Login /> },
             { path: "/Cadastro", element: <Cadastro /> },
             { path: "/Perfil", element: <PrivateRoute element={Perfil} pathAlternate="/Login" />},
-            { path: "/Scoreboard", element: <Scoreboard /> }
+            { path: "/Scoreboard", element: <Scoreboard /> },
+            { path: "/Sobre", element: <Sobre /> }
         ]
     }
 ]);

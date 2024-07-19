@@ -61,7 +61,6 @@ function Gameview() {
     };
 
 
-
     // Testando a letra informada pelo usuário
     const testarLetra = (event) => {
         const letra = event.target.textContent.toLowerCase(); // Pegando a letra selecionada e transformando em minuscula
@@ -92,14 +91,24 @@ function Gameview() {
             if(qtdLetrasOcultas == 0){ // Condição caso o usuário Ganhar
                 document.querySelector('.area_keyboard').style.display = 'none'; // Ocultando o Keyboard
                 setButtonRestart(true)
-                Alert(
-                    false, 
-                    'Parabéns', 
-                    'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/><br/>E ganhou +1 ponto !', 
-                    '', 
-                    true
-                )
-                setPontuacaoAtual(pontuacaoAtual+1)
+                if(currentUser){
+                    Alert(
+                        false, 
+                        'Parabéns', 
+                        'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/><br/>E ganhou +1 ponto !', 
+                        '', 
+                        true
+                    )       
+                    setPontuacaoAtual(pontuacaoAtual+1)
+                } else {
+                    Alert(
+                        false, 
+                        'Parabéns', 
+                        'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>', 
+                        '', 
+                        true
+                    )   
+                }
             }
         }
 
@@ -107,14 +116,34 @@ function Gameview() {
             document.querySelector('.area_palavra').style.display = 'none'; // Ocultando palavra
             document.querySelector('.area_keyboard').style.display = 'none'; // Ocultando o Keyboard
             setButtonRestart(true)
-            Alert(
-                false, 
-                'Parabéns', 
-                'Você acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/><br/>E também atingiu um novo record em sequência de vitórias !<br/>Record atual: '+ pontuacaoAtual, 
-                '', 
-                true
-            )      
-            setPontuacaoAtual(0)
+            if(currentUser){
+                {pontuacaoAtual > 0 ? 
+                    Alert(
+                        false, 
+                        'Você Perdeu', 
+                        'Você não acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/><br/>Seus pontos de sequência foram zerados !', 
+                        '', 
+                        true
+                    )    
+                    :
+                    Alert(
+                        false, 
+                        'Você Perdeu', 
+                        'Você não acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>', 
+                        '', 
+                        true
+                    );
+                }
+                setPontuacaoAtual(0)
+            } else {
+                Alert(
+                    false, 
+                    'Você Perdeu', 
+                    'Você não acertou todas as Letras da palavra: <b>'+palavraSelecionada.palavra.toUpperCase()+'<b/>', 
+                    '', 
+                    true
+                )    
+            }
         } 
         
     }, [vidasRestantes, letrasCorretas]);
@@ -159,7 +188,7 @@ function Gameview() {
                                 <section id={style.tableGame}>
 
                                     <div id={style.descript}>
-                                        <span>Categoria: <b>{palavraSelecionada.categoria}</b></span>
+                                        <span>Tema: <b>{palavraSelecionada.categoria.toUpperCase()}</b></span>
                                         <span>Vidas restantes: <b style={{ color: 'red', fontSize: '1.4em' }}>{vidasRestantes}</b></span>
                                         {
                                             currentUser ? (<>

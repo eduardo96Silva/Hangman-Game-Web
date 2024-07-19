@@ -17,4 +17,4 @@ function NoPage() {
     )
 }
 
-export default NoPage
+export default NoPage;

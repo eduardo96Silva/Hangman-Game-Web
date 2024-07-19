@@ -19,11 +19,13 @@
     line-height: 40px;
     transition: all 0.8s;
 }
+
 #logo:hover {
     transform: scale(1.1);
-    cursor:default;
+    cursor: default;
 }
-#logo span{
+
+#logo span {
     font-weight: 400;
     font-style: normal;
 }
@@ -40,7 +42,8 @@
     color: #0c0c0c;
     flex-wrap: wrap;
 }
-#accountOption{
+
+#accountOption {
     display: flex;
     line-height: 40px;
     font-size: 1.1em;
@@ -48,9 +51,9 @@
     color: #0c0c0c;
 }
 
-#header a{   
+#header a {
     color: #3b3b3b;
-    cursor:none;
+    cursor: none;
     font-style: normal;
     text-decoration: inherit;
     transition: all 0.8s;
@@ -60,22 +63,47 @@
     font-weight: lighter;
 }
 
-#header a:hover{
+#header a:hover {
     cursor: pointer;
     color: #000000;
     border-bottom: 3px solid rgba(0, 0, 0, 0.651);
 }
 
-.active{
+.active {
     border-bottom: 3px solid rgba(6, 62, 218, 0.651) !important;
 }
 
-#navItemPerfil{
+#navItemPerfil {
     display: flex;
     align-items: center;
     flex-direction: row;
 }
-#navItemPerfil div{
+
+#navItemPerfil div {
     width: 30px;
     height: 30px;
 }
+
+
+
+@media only screen and (width:300px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+}
+
+@media only screen and (width:480px) {
+    /* smartphones, Android phones, landscape iPhone */
+
+
+}
+
+@media only screen and (width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+
+}
+
+@media only screen and (width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+
+}
+

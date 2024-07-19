@@ -119,7 +119,7 @@ function Perfil() {
                                     <img id='19' src={`/imgs/avatar/${avatarList[19]}`} onClick={selectAvatar} />
                                 </span>
                                 <br />
-                                <Button variant="contained" onClick={cancelEditAvatar}>
+                                <Button className={style.buttonActionMui} variant="contained" onClick={cancelEditAvatar}>
                                     <ArrowBackIcon color='#fff' />
                                     Voltar
                                 </Button>
@@ -157,12 +157,12 @@ function Perfil() {
                                     />
                                     <br />
 
-                                    <Button onClick={sairDaConta} variant="contained" color='success'>
+                                    <Button className={style.buttonActionMui} onClick={sairDaConta} variant="contained" color='success'>
                                         Sair da conta &nbsp;
                                         <LogoutRoundedIcon color={'#fff'} />
                                     </Button>
                                     <br />
-                                    <Button onClick={deletarConta} variant="outlined" color='error'>
+                                    <Button className={style.buttonActionMui} onClick={deletarConta} variant="outlined" color='error'>
                                         Deletar conta&nbsp;
                                         <DeleteIcon color={'#fff'} />
                                     </Button>

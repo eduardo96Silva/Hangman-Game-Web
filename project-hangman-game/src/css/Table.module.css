@@ -13,19 +13,25 @@
     overflow-x: hidden;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     width: 70%;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 table {
     width: 95%;
 }
-table, th, td {border: none !important;}
 
-#row_content{
+table,
+th,
+td {
+    border: none !important;
+}
+
+#row_content {
     height: 20px !important;
     background-color: none;
     border-bottom: 1px solid #ccc;
 }
+
 tr:nth-child(even) {
     background-color: #ffffff;
 }
@@ -39,16 +45,24 @@ th {
     color: #fff;
 }
 
-#td_user{
+#td_user {
     display: flex;
     align-items: center;
 }
 
-.sticky_row{
+.sticky_row {
     position: sticky;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     top: 40px;
     bottom: 0;
     background-color: #bde3fd !important;
     z-index: 1;
+}
+
+@media only screen and (max-width:1000px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    #area_table {
+        width: 100%;
+    }
+
 }

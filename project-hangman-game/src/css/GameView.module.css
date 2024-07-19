@@ -1,5 +1,5 @@
 /* Lobby */
-#lobby{
+#lobby {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,19 +40,21 @@
 }
 
 #descript span {
-    
+
     font-size: 1.1em;
 }
 
-#areaForca{
+#areaForca {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#palavra{
+
+#palavra {
     display: flex;
 }
-#palavra span{
+
+#palavra span {
     text-align: center;
     width: 30px;
     font-size: 4em;
@@ -83,7 +85,7 @@
     height: 55px;
     margin-left: 5px;
     margin-right: 5px;
-    
+
     font-weight: 600;
     text-align: center;
     align-content: center;
@@ -99,4 +101,60 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     background: rgb(255, 255, 255);
     cursor: pointer;
+}
+
+
+
+
+@media only screen and (max-width:800px) {
+    #tableGame{
+        width: 100%;
+    }
+    #descript{
+        box-shadow: none;
+        padding: 0px 10px;
+        flex-direction: column;
+        align-items: start;
+    }
+    #areaForca img{
+        width: 90px !important;
+    }
+    #palavra{
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #palavra span {
+        width: 30px;
+        font-size: 2.5em;
+        margin-left: 9px;
+        margin-right: 9px;
+        border-bottom: 2px solid rgb(14, 68, 150);
+    }
+
+    /* Style Keyboard */
+    #keyboard {
+        width: 100%;
+        margin-top: 20px;
+        height: auto;
+    }
+
+    #keyboard div {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #keyboard div button {
+        width: 50px;
+        height: 50px;
+        margin-left: 1px;
+        margin-right: 1px;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
 }

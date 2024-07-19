@@ -10,3 +10,14 @@
     padding-bottom: 50px;
     color: #383838;
 }
+
+#area_RefreshButton{
+    display: flex;
+    justify-content: end;
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#card button{background-color: rgba(6, 53, 182, 0.884) !important;}
+#card button:hover{background-color: rgba(36, 79, 199, 0.884) !important;}
