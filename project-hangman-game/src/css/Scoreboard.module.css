@@ -21,3 +21,9 @@
 
 #card button{background-color: rgba(6, 53, 182, 0.884) !important;}
 #card button:hover{background-color: rgba(36, 79, 199, 0.884) !important;}
+
+@media only screen and (max-width:1000px) {
+    #card span{
+        padding: 0px 30px;
+    }
+}

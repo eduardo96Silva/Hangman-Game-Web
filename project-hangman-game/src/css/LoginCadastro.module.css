@@ -80,3 +80,14 @@
 #infoTextCadastro a{
     text-decoration: none !important;
 }
+
+
+@media only screen and (max-width:500px) {
+    #card{
+        width: 100vw;
+        flex-direction: row;
+    }
+    .content{
+        padding: 0px 20px;
+    }
+}

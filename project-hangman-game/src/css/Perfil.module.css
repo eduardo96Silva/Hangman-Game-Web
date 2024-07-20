@@ -81,50 +81,8 @@
 }
 
 
-@media only screen and (min-width:320px) {
-    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-    .painel{
-        margin-top: 0px;
-        border-radius: 0px;
-        box-shadow: none;
-    }
-    .buttonActionMui{
-        height: 50px;
-    }
-    #selectionAvatar{
-        box-shadow: none;
-        background-color: #fff;
-    }
-  
-}
-
-@media only screen and (min-width:480px) {
-    /* smartphones, Android phones, landscape iPhone */
-    #textFields{
-        padding: 0px 50px;
-    }
-}
-
-@media only screen and (min-width:600px) {
-    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-    #textFields{
-        padding: 0px 20px;
-    }
-
-}
-
-@media only screen and (min-width:801px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */
-    .painel{
-        margin-top: 45px;
-        border-radius: 10px;
-        box-shadow: rgb(67, 71, 85) 0px 0px 0.25em, rgba(0, 0, 0, 0.39) 0px 0.25em 1em;
-    }
-    .buttonActionMui{
-        height: 40px;
-    }
-    #selectionAvatar{
-        box-shadow: none;
-        background-color: #e0e0e0;
+@media only screen and (max-width:500px) {
+    .content{
+        padding: 20px;
     }
 }
