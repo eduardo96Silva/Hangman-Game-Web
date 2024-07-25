@@ -25,7 +25,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 90%;
-    width: 80%;
+    width: 90%;
 }
 
 #descript {
@@ -33,6 +33,7 @@
     justify-content: space-evenly;
     align-items: center;
     height: auto;
+    width: auto;
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -40,8 +41,8 @@
 }
 
 #descript span {
-
     font-size: 1.1em;
+    text-align: center;
 }
 
 #areaForca {
@@ -103,13 +104,11 @@
     cursor: pointer;
 }
 
-
-
-
 @media only screen and (max-width:800px) {
     #tableGame{
         width: 100%;
     }
+    
     #descript{
         box-shadow: none;
         padding: 0px 10px;
@@ -163,4 +162,5 @@
     #keyboard div{
       flex-wrap: nowrap;
     }
+
 }

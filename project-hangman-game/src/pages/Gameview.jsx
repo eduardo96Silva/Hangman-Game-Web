@@ -57,6 +57,8 @@ function Gameview() {
         document.querySelectorAll('.area_keyboard button').forEach(element => {
             element.disabled = false; // Mostrando novamente todas as letras do teclado
             element.classList.remove('buttonDisabled'); // Mostrando novamente todas as letras do teclado
+            element.classList.remove('letterIncorrect'); // Mostrando novamente todas as letras do teclado
+            element.classList.remove('letterCorrect'); // Mostrando novamente todas as letras do teclado
         });
     };
 
@@ -68,12 +70,14 @@ function Gameview() {
             setLetrasCorretas([...letrasCorretas, letra]); // atribuindo a letra na lista de letras corretas
             event.target.disabled = true;
             event.target.classList.add('buttonDisabled');
+            event.target.classList.add('letterCorrect');
 
         } else { // Condição caso NÃO haja a letra na palavra
             setStageAtual(stageAtual + 1) // Aumentando o numero de erro
             setVidasRestantes(vidasRestantes - 1)  // Definindo as vidas restantes
             event.target.disabled = true;
             event.target.classList.add('buttonDisabled');
+            event.target.classList.add('letterIncorrect');
         }
     };
 
@@ -188,7 +192,8 @@ function Gameview() {
                                 <section id={style.tableGame}>
 
                                     <div id={style.descript}>
-                                        <span>Tema: <b>{palavraSelecionada.categoria.toUpperCase()}</b></span>
+                                        <span>Tema: <b>{palavraSelecionada.categoria}</b></span> 
+                                        <span>Quantidade de letras: <b>{palavraSelecionada.palavra.length}</b></span>
                                         <span>Vidas restantes: <b style={{ color: 'red', fontSize: '1.4em' }}>{vidasRestantes}</b></span>
                                         {
                                             currentUser ? (<>

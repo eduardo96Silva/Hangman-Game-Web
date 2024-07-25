@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { deleteAccount } from '../services/userService';
 import { logOut } from '../services/authService';
 import { getAuth, sendEmailVerification, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { analytics } from '../services/firebaseConfig';
 
 export function AlertEmailPendingVerification(icon, title, text, showConfirmButton, showCancelButton, email, senha){
     return (
@@ -63,6 +62,7 @@ export function AlertDeleteAccount(icon, title, text, showConfirmButton, idUser)
                         icon: "success"
                     });
                     logOut(getAuth())
+                    logEvent(analytics, 'account_deleted', { idUser: idUser });
                 } catch (error) {
                     console.log('Erro ao deletar conta '+ error);
                     Swal.fire({

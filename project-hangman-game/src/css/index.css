@@ -60,6 +60,13 @@ input{
   color: rgb(105, 105, 105) !important;
 }
 
+.letterCorrect{
+  background-color: rgba(39, 194, 39, 0.384) !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.letterIncorrect{
+  background-color: rgba(197, 34, 34, 0.486) !important;
+}
 
 .loadingContainer{
   display: flex;
@@ -96,6 +103,94 @@ tr:nth-child(even) {
 
 
 
+
+
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position:fixed;
+  width: 36px;
+  height: 30px;
+  right: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #0000008c;
+  border-radius: 30px;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #003ba9;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #0049cf;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100vh;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #ffffff;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  overflow-y: hidden !important;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #ffffff;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  align-items: center;
+  color: #cecece;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+
+  color: #1d1d1d;
+  margin-bottom: 20px;
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: #002e72;
+}
+
 /* Scrollbar Style   ----  Chrome, Edge and Safari */
 *::-webkit-scrollbar {
   height: 10px;
@@ -123,6 +218,31 @@ tr:nth-child(even) {
 
 @media only screen and (max-width:1000px) {
   #allContentPage{
-    padding: 0px;
+    padding: 0px 0px !important;
   }
 }
+@media only screen and (min-width:1001px) {
+  #allContentPage{
+    padding: 0px 80px !important;
+  }
+}
+@media only screen and (min-width:1250px) {
+  #allContentPage{
+    padding: 0 180px !important;
+  }
+}
+
+/* Hidden Button Burguer */
+@media only screen and (min-width:720px) { 
+  .bm-burger-button {
+    width: 0px;
+  }
+}
+
+@media only screen and (max-width:720px){
+  .painel{
+    margin: 0px;
+  }
+}
+
+

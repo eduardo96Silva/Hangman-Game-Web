@@ -1,3 +1,7 @@
+#navMobile{
+    display: none;
+}
+#react-burger-menu-btn{z-index: 0 !important;}
 #header {
     display: flex;
     justify-content: space-around;
@@ -86,24 +90,41 @@
 
 
 
-@media only screen and (width:300px) {
-    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
 
-}
-
-@media only screen and (width:480px) {
+@media only screen and (max-width:720px) {
     /* smartphones, Android phones, landscape iPhone */
+    #navMobile{
+        display: block;
+    }
 
+    #header{
+        display: none;
+        flex-direction: column;
+    }
 
+    #navMobile #navbar{
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    #navMobile #navbar a{
+        margin: 10px 0px;
+        color: #000000;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #e0e0e0;
+        padding: 5px 40px;
+        width: auto;
+        text-decoration: none;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border: 1px solid #c7c7c7;
+    }
+    #navMobile #accountOption a{
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .active{
+        background-color: #b6eeff !important;
+    }
 }
-
-@media only screen and (width:600px) {
-    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-
-}
-
-@media only screen and (width:801px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */
-
-}
-
